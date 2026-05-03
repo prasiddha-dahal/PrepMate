@@ -1,6 +1,8 @@
 const userModel = require('../models/user.model')
+const blacklisttokenModel = require('../models/blacklist.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
+
 
 const register = async (req, res) => {
 
@@ -96,6 +98,13 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
 
     try {
+        const token = req.cookies.token;   //first fetching token from the cookies from users browser
+
+        if(token){
+            await blacklisttokenModel.create({
+                token
+            })
+        }
 
         res.clearCookie("token");
 

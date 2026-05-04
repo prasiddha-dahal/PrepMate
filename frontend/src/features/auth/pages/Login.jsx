@@ -1,10 +1,35 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { useAuth } from "../hooks/useAuth"
+import { useState } from "react";
 
 const Login = () => {
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const { loading, handleLogin } = useAuth();
+
+    const [identifier, setIdentifier] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        const success = await handleLogin({ identifier, password });
+        if (success) {
+            navigate('/');
+        } else {
+            alert("Invalid credentials")
+        }
+
     }
+
+    if (loading) {
+        return (
+            <main className="min-h-screen w-full bg-[#151515]">
+                <p className="text-white">Loading...</p>
+            </main>
+        )
+    }
+
     return (
         <>
             <main>
@@ -22,6 +47,8 @@ const Login = () => {
                                     className="w-full border p-2 rounded focus:outline-none"
                                     placeholder="Enter username or email"
                                     name="identifier"
+                                    onChange={(e) => setIdentifier(e.target.value)}
+                                    value={identifier}
                                 />
                             </div>
 
@@ -32,15 +59,17 @@ const Login = () => {
                                     className="w-full border p-2 rounded focus:outline-none"
                                     placeholder="Enter password"
                                     name="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
                                 />
                             </div>
 
                             <button className="w-full bg-red-600 text-white p-2 rounded cursor-pointer transition transform hover:bg-red-800 active:scale-95 active:shadow-inner">
                                 Login
                             </button>
+                            <p>Don't have an account? <Link to={'/register'} className="font-normal underline text-blue-600 my-4">Go to Register</Link> </p>
 
                         </form>
-                        <p>Don't have an account? <Link to={'/register'} className="font-normal underline text-blue-600">Go to Register</Link> </p>
                     </div>
                 </div>
 

@@ -77,7 +77,7 @@ const login = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,    //cookie cannot be accessed from js 
-            secure: false  // cookie can be send form both http and https 
+            secure: false  // cookie can be send from both http and https 
         });
 
         res.status(200).json({

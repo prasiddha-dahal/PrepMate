@@ -50,8 +50,9 @@ const Register = () => {
                                 Register
                             </button>
 
+                            <p>Already have an account? <Link to={'/login'} className="font-normal underline text-blue-600">Go to Login</Link> </p>
+
                         </form>
-                        <p>Already have an account? <Link to={'/login'} className="font-normal underline text-blue-600">Go to Login</Link> </p>
                     </div>
                 </div>
 

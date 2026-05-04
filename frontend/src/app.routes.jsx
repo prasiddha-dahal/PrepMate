@@ -7,11 +7,15 @@ const router = createBrowserRouter([
         path: '/login',
         element: <Login />
     },
-
     {
         path: '/register',
         element: <Register />
+    },
+    {
+        path: '/',
+        element: <p>Home page welcome</p>
     }
+
 ])
 
 export default router

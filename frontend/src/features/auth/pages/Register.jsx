@@ -1,12 +1,29 @@
+import { useState } from "react"
 import { useNavigate, Link } from "react-router"
+import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
 
-    const navigate = useNavigate()
+    const { loading, handleRegister } = useAuth();
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        await handleRegister({ username, email, password });
+        navigate('/login');
     }
+
+    if (loading) {
+        return (
+            <main>
+                <p>Loading...</p>
+            </main>
+        )
+    }
+
     return (
         <>
             <main>
@@ -24,6 +41,8 @@ const Register = () => {
                                     className="w-full border p-2 rounded focus:outline-none"
                                     placeholder="Enter username"
                                     name="username"
+                                    onChange={(e)=>setUsername(e.target.value)}
+                                    value={username}
                                 />
                             </div>
 
@@ -34,6 +53,8 @@ const Register = () => {
                                     className="w-full border p-2 rounded focus:outline-none"
                                     placeholder="Enter email"
                                     name="email"
+                                    onChange={(e)=>setEmail(e.target.value)}
+                                    value={email}
                                 />
                             </div>
                             <div>
@@ -43,6 +64,8 @@ const Register = () => {
                                     className="w-full border p-2 rounded focus:outline-none"
                                     placeholder="Enter password"
                                     name="password"
+                                    onChange={(e)=>setPassword(e.target.value)}
+                                    value={password}
                                 />
                             </div>
 

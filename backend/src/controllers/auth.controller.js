@@ -52,8 +52,8 @@ const login = async (req, res) => {
     try {
         const { identifier, password } = req.body;
 
-        const user = await userModel.findOne({ 
-        $or : [{email: identifier}, {username: identifier}]
+        const user = await userModel.findOne({
+            $or: [{ email: identifier }, { username: identifier }]
         });
 
         if (!user) {
@@ -100,7 +100,7 @@ const logout = async (req, res) => {
     try {
         const token = req.cookies.token;   //first fetching token from the cookies from users browser
 
-        if(token){
+        if (token) {
             await blacklisttokenModel.create({
                 token
             })
@@ -118,23 +118,24 @@ const logout = async (req, res) => {
 }
 
 
-const getMe = async(req,res) => {
-    try{
+const getMe = async (req, res) => {
+    try {
 
         const user = await userModel.findById(req.user.id);
 
         res.status(200).json({
-            message : "User detail fetched successfully",
+            message: "User detail fetched successfully",
             user: {
                 id: user._id,
                 username: user.username,
                 email: user.email
             }
         });
-    }catch(error){
+    } catch (error) {
         console.error(error.message)
+        res.status(500).json({ message: "Server error or unauthorized" });
     }
 }
 
 
-module.exports = { register, login, logout ,getMe}
+module.exports = { register, login, logout, getMe }

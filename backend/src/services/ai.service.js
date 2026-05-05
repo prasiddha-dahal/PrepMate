@@ -1,5 +1,4 @@
-const { GoogleGenAI, SchemaType } = require("@google/genai");
-const { z } = require('zod');
+const { GoogleGenAI } = require("@google/genai");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -17,7 +16,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                 type: "number",
                 description: "A score between 0 and 100 indicating how well the candidate's profile matches the job description"
             },
-            technicalQuestion: {
+            technicalQuestions: {
                 type: "array",
                 items: {
                     type: "object",
@@ -30,7 +29,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                 },
                 description: "Technical questions along with intention and how to answer"
             },
-            behaviourQuestion: {
+            behaviourQuestions: {
                 type: "array",
                 items: {
                     type: "object",
@@ -55,7 +54,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                 },
                 description: "List of skill gaps with severity"
             },
-            preparationPlan: {
+            preparationPlans: {
                 type: "array",
                 items: {
                     type: "object",
@@ -73,7 +72,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                 description: "Day-wise preparation plan"
             }
         },
-        required: ["matchScore", "technicalQuestion", "behaviourQuestion", "skillGap", "preparationPlan"]
+        required: ["matchScore", "technicalQuestions", "behaviourQuestions", "skillGap", "preparationPlans"]
     };
 
     const response = await ai.models.generateContent({

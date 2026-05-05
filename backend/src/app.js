@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 
 app.use('/api/auth', authRouter)
-app.use('api/interview', interviewRouter)
+app.use('/api/interview', interviewRouter)
 
 app.get('/',(req,res)=>{
     res.send("api running")

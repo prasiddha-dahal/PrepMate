@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const authRoutes = require('./routes/auth.route');
+const authRouter = require('./routes/auth.route');
+const interviewRouter = require('./routes/interview.route')
 
 const app = express();
 
@@ -13,7 +14,10 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth', authRoutes)
+
+
+app.use('/api/auth', authRouter)
+app.use('api/interview', interviewRouter)
 
 app.get('/',(req,res)=>{
     res.send("api running")

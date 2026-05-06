@@ -5,7 +5,7 @@ const api = axios.create({
     withCredentials: true
 })
 
-export const generateInteviewReport = async({ selfDescription, jobDescription, resume }) => {
+export const generateInteviewReport = async({ jobDescription, selfDescription, resume }) => {
 
     const formData = new FormData();
     formData.append("jobDescription", jobDescription)

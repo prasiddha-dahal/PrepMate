@@ -32,5 +32,41 @@ const generateInterviewReportController = async (req, res) => {
     }
 }
 
+const getInterviewReportById = async (req, res) => {
+    const { interviewId } = req.params;
+    try {
+        const interviewReport = await interviewReportModel.findOne({ _id: interviewId, user: req.user.id })
 
-module.exports = { generateInterviewReportController }
+        if(!interviewReport){
+            return res.status(404).json({
+                message: "interview report not found"
+            })
+        }
+
+        res.status(200).json({
+            message: "interview report fetched Successfully",
+            interviewReport
+        })
+
+
+    }catch(error){
+        res.status(500).json({
+            message: "Some problem occured"
+        })
+    }
+
+}
+
+const getAllInterviewReport = async(req, res) => {
+
+    const interviewReports = await interviewReportModel.find({user: req.user.id}).sort({createdAt: -1})
+    .select("-resume -selfDescription -jobDescription -_v -technicalQuestions -behaviouralQuestions -skillGaps -preparationPlans")
+
+    res.status(200).json({
+        message: "interview Reports fetched Successfully",
+        interviewReports
+    })
+}
+
+
+module.exports = { generateInterviewReportController, getInterviewReportById, getAllInterviewReport }

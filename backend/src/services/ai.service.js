@@ -70,9 +70,13 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                     required: ["day", "focus", "tasks"]
                 },
                 description: "Day-wise preparation plan"
-            }
+            },
+            title: {
+                type: "string",
+                description: "The title of the job for which the interview report is generated"
+            },
         },
-        required: ["matchScore", "technicalQuestions", "behaviourQuestions", "skillGap", "preparationPlans"]
+        required: ["matchScore", "technicalQuestions", "behaviourQuestions", "skillGap", "preparationPlans", "title"]
     };
 
     const response = await ai.models.generateContent({

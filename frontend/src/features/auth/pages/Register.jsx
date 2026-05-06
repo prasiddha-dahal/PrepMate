@@ -27,8 +27,8 @@ const Register = () => {
     return (
         <>
             <main>
-                <div className="min-h-screen flex items-center justify-center bg-[#151515] text-white font-bold ">
-                    <div className="w-full max-w-sm  p-6 rounded shadow bg-[#151515]">
+                <div className="min-h-screen flex items-center justify-center bg-[#1B1D1D] text-white font-bold ">
+                    <div className="w-full max-w-sm  p-6 rounded shadow bg-[#1B1D1D]">
 
                         <h1 className="text-3xl font-extrabold text-center mb-4">Register</h1>
 

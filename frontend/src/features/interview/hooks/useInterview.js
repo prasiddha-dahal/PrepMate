@@ -1,6 +1,5 @@
-import { renderToReadableStream } from "react-dom/server";
 import { InterviewContext } from "../interview.context";
-import { generateInteviewReport, getInterviewReportById, getAllInterviewsReports } from "../services/interview.api";
+import { generateInteviewReport, getInterviewReportById, getAllInterviewsReports, logout as logoutApi } from "../services/interview.api";
 import { useContext } from "react";
 
 export const useInterview = () => {
@@ -53,6 +52,19 @@ export const useInterview = () => {
         }
         return response.interviewReports
     }
-    return { loading, report, reports, generateReport, getReportById, getReports }
+
+    const logout = async () => {
+        setLoading(true);
+        try {
+            await logoutApi();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
+    return { loading, report, reports, generateReport, getReportById, getReports, logout }
 
 }

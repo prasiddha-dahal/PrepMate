@@ -5,33 +5,23 @@ import { Protected } from "./features/auth/components/Protected";
 import Dashboard from "./features/interview/pages/Dashboard";
 import InterviewReport from "./features/interview/pages/InterviewReport";
 import GenerateReport from "./features/interview/pages/GenerateReport";
+import AppLayout from './features/interview/components/AppLayout'
 
 const router = createBrowserRouter([
+    { path: '/login', element: <Login /> },
+    { path: '/register', element: <Register /> },
     {
-        path: '/login',
-        element: <Login />
-    },
-    {
-        path: '/register',
-        element: <Register />
-    },
-    {
-        path: '/',
-        element: <Protected>
-            <Dashboard />
-        </Protected>
-    },
-    {
-        path: '/interview/:id',
-        element: <Protected>
-            <InterviewReport />
-        </Protected>
-    },
-    {
-        path: '/generate-report',
-        element: <Protected><GenerateReport /></Protected>
+        element: (
+            <Protected>
+                <AppLayout />
+            </Protected>
+        ),
+        children: [
+            { path: '/', element: <Dashboard /> },
+            { path: '/interview/:id', element: <InterviewReport /> },
+            { path: '/generate-report', element: <GenerateReport /> },
+        ]
     }
+]);
 
-])
-
-export default router
+export default router;

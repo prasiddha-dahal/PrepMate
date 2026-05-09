@@ -5,7 +5,7 @@ const api = axios.create({
     withCredentials: true
 })
 
-export const generateInteviewReport = async({ jobDescription, selfDescription, resume }) => {
+export const generateInteviewReport = async ({ jobDescription, selfDescription, resume }) => {
 
     const formData = new FormData();
     formData.append("jobDescription", jobDescription)
@@ -21,7 +21,7 @@ export const generateInteviewReport = async({ jobDescription, selfDescription, r
     return response.data
 }
 
-export const getInterviewReportById = async(interviewId) => {
+export const getInterviewReportById = async (interviewId) => {
 
     const response = await api.get(`/api/interview/report/${interviewId}`);
 
@@ -29,9 +29,15 @@ export const getInterviewReportById = async(interviewId) => {
 }
 
 
-export const getAllInterviewsReports = async() => {
+export const getAllInterviewsReports = async () => {
 
     const response = await api.get('/api/interview');
 
+    return response.data
+}
+
+export const logout = async () => {
+    const response = await api.get('api/auth/logout');
+    
     return response.data
 }

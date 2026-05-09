@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { useInterview } from "../hooks/useInterview";
 import { useNavigate } from "react-router";
 
-const Home = () => {
+const GenerateReport = () => {
 
     const navigate = useNavigate()
     const [selfDescription, setSelfDescription] = useState("");
@@ -82,4 +82,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default GenerateReport

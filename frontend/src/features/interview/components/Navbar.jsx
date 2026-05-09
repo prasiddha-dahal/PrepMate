@@ -21,12 +21,12 @@ const Navbar = () => {
             >
                 PrepAI
             </p>
-            <div className="flex items-center gap-6 cursor-pointer">
+            <div className="flex items-center gap-6">
                 <NavLink label="Dashboard" active={isActive("/")} onClick={() => navigate("/")} />
                 <NavLink label="New Report" active={isActive("/generate-report")} onClick={() => navigate("/generate-report")} />
                 <button
                     onClick={handleLogout}
-                    className="text-sm text-gray-400 hover:text-red-500 transition"
+                    className="text-sm bg-red-500 text-white  hover:bg-red-700 px-2 py-1 rounded-xl transition cursor-pointer "
                 >
                     Logout
                 </button>

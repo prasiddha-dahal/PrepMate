@@ -72,11 +72,13 @@ const GenerateReport = () => {
 
             </form>
 
-            {loading &&
-                <div>
-                    <p>loading...</p>
+            {loading && (
+                <div className="fixed inset-0 bg-[#1B1D1D]/80 flex flex-col justify-center items-center z-50">
+                    <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin mb-4" />
+                    <p className="text-gray-400 text-sm">Analyzing your resume with AI...</p>
                 </div>
-            }
+            )}
+
         </main>
 
     )

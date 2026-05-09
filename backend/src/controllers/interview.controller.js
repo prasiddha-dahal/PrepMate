@@ -36,7 +36,7 @@ const getInterviewReportById = async (req, res) => {
     try {
         const interviewReport = await interviewReportModel.findOne({ _id: interviewId, user: req.user.id })
 
-        if(!interviewReport){
+        if (!interviewReport) {
             return res.status(404).json({
                 message: "interview report not found"
             })
@@ -48,7 +48,7 @@ const getInterviewReportById = async (req, res) => {
         })
 
 
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
             message: "Some problem occured"
         })
@@ -56,10 +56,10 @@ const getInterviewReportById = async (req, res) => {
 
 }
 
-const getAllInterviewReport = async(req, res) => {
+const getAllInterviewReport = async (req, res) => {
 
-    const interviewReports = await interviewReportModel.find({user: req.user.id}).sort({createdAt: -1})
-    .select("-resume -selfDescription -jobDescription -_v -technicalQuestions -behaviouralQuestions -skillGaps -preparationPlans")
+    const interviewReports = await interviewReportModel.find({ user: req.user.id }).sort({ createdAt: -1 })
+        .select("matchScore jobDescription technicalQuestions behaviourQuestions skillGap preparationPlans createdAt")
 
     res.status(200).json({
         message: "interview Reports fetched Successfully",

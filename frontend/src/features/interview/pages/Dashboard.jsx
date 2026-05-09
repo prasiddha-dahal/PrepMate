@@ -8,6 +8,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         getReports();
+        console.log(reports)
     }, []);
 
     return (
@@ -64,10 +65,10 @@ const Dashboard = () => {
                             </div>
 
                             <div className="mt-4 flex flex-wrap gap-2">
-                                <Pill label={`${report.technicalQuestion?.length ?? 0} technical Qs`} />
-                                <Pill label={`${report.behaviourQuestion?.length ?? 0} behavioural Qs`} />
+                                <Pill label={`${report.technicalQuestions?.length ?? 0} technical Qs`} />
+                                <Pill label={`${report.behaviourQuestions?.length ?? 0} behavioural Qs`} />
                                 <Pill label={`${report.skillGap?.length ?? 0} skill gaps`} />
-                                <Pill label={`${report.preparationPlan?.length ?? 0} day plan`} />
+                                <Pill label={`${report.preparationPlans?.length ?? 0} day plan`} />
                             </div>
 
                             <div className="mt-4 flex justify-between items-center">
